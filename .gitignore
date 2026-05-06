@@ -1,0 +1,6 @@
+# Environment files - NEVER commit these
+.env
+.env.local
+.env.production
+node_modules/
+.next/
