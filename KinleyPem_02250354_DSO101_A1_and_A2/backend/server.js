@@ -8,6 +8,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+async function createTable() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS tasks (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        completed BOOLEAN DEFAULT FALSE
+      )
+    `);
+
+    console.log("Tasks table ready");
+  } catch (err) {
+    console.log("TABLE ERROR:", err);
+  }
+}
+
+createTable();
+
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
@@ -30,15 +48,7 @@ app.get("/tasks", async (req, res) => {
 
 app.post("/tasks", async (req, res) => {
   try {
-    console.log(req.body);
-
     const { title } = req.body;
-
-    if (!title) {
-      return res.status(400).json({
-        error: "Title is required",
-      });
-    }
 
     const result = await pool.query(
       "INSERT INTO tasks (title) VALUES ($1) RETURNING *",
