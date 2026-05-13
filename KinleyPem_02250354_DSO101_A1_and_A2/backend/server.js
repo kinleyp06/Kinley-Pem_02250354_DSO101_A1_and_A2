@@ -24,8 +24,6 @@ async function createTable() {
   }
 }
 
-createTable();
-
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
@@ -108,6 +106,10 @@ app.delete("/tasks/:id", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+(async () => {
+  await createTable();
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+})();
