@@ -14,16 +14,31 @@ app.get("/", (req, res) => {
 
 app.get("/tasks", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM tasks ORDER BY id ASC");
+    const result = await pool.query(
+      "SELECT * FROM tasks ORDER BY id ASC"
+    );
+
     res.json(result.rows);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log(err);
+
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 
 app.post("/tasks", async (req, res) => {
   try {
+    console.log(req.body);
+
     const { title } = req.body;
+
+    if (!title) {
+      return res.status(400).json({
+        error: "Title is required",
+      });
+    }
 
     const result = await pool.query(
       "INSERT INTO tasks (title) VALUES ($1) RETURNING *",
@@ -32,7 +47,11 @@ app.post("/tasks", async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log(err);
+
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 
@@ -48,7 +67,11 @@ app.put("/tasks/:id", async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log(err);
+
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 
@@ -56,11 +79,20 @@ app.delete("/tasks/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    await pool.query("DELETE FROM tasks WHERE id=$1", [id]);
+    await pool.query(
+      "DELETE FROM tasks WHERE id=$1",
+      [id]
+    );
 
-    res.json({ message: "Task deleted" });
+    res.json({
+      message: "Task deleted",
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log(err);
+
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 
