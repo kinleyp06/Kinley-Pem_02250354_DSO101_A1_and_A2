@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: be-todo
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+
+    envVars:
+      - key: PORT
+        value: 5000
+
+      - key: DB_HOST
+        value: dpg-d86c75f7f7vs7392t22g-a
+
+      - key: DB_USER
+        value: db_user
+
+      - key: DB_PASSWORD
+        value: XHMgWIwHIUDMMfKEVFthQFOhn6FWeDbu
+
+  - type: web
+    name: fe-todo
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://be-todo.onrender.com
