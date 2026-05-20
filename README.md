@@ -247,7 +247,7 @@ services:
 | Service | URL |
 |---------|-----|
 | Backend API | `https://be-todo-02250354.onrender.com` |
-| Frontend App | URL from Render dashboard |
+| Frontend App | `https://fe-todo-02250354.onrender.com` |
 
 ---
 
@@ -283,12 +283,12 @@ git push origin main
 
 ## Conclusion
 
-✅ Built working To-Do app with React + Node.js  
-✅ Created Docker images tagged with student ID  
-✅ Pushed images to Docker Hub  
-✅ Deployed backend on Render.com  
-✅ Configured PostgreSQL database  
-✅ Setup automated deployment blueprint  
+- Built working To-Do app with React + Node.js  
+- Created Docker images tagged with student ID  
+- Pushed images to Docker Hub  
+- Deployed backend on Render.com  
+- Configured PostgreSQL database  
+- Setup automated deployment blueprint  
 
 **Key takeaways:**
 - Containers ensure consistency across environments
@@ -296,24 +296,3 @@ git push origin main
 - CI/CD automates the deployment pipeline
 - Render simplifies cloud deployment
 
----
-
-## References
-
-1. Docker Docs - https://docs.docker.com
-2. Render Docs - https://render.com/docs
-3. Render Blueprint - https://render.com/docs/blueprint-spec
-4. Vite Docs - https://vitejs.dev
-5. React Docs - https://react.dev
-
----
-
-## Submission
-
-| Field | Value |
-|-------|-------|
-| Student | Kinley Pem |
-| ID | 02250354 |
-| Subject | DSO101 - CI/CD |
-| Assignment | I |
-| Folder | `Kinley-Pem_02250354_DSO101_A1` |
